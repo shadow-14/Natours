@@ -18,24 +18,30 @@ const xss = require('xss-clean');
 const helmet = require('helmet');
 const compression = require('compression');
 app.use(helmet()); // SET SECURITY HTTP
-// ----------------------------------------------------------------middleware middleware----------------------------------------------------------------
-// app.use((req, res, next) => {
-//   res.setHeader("Content-Security-Policy", "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://cdn.jsdelivr.net https://127.0.0.1:3000 ws://127.0.0.1:* wss://natours-7fg5.onrender.com:50394 https://js.stripe.com/v3;");
-//   next();
-// });
-
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+      contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+    })
+  );
+// ----------------------------------------------------------------middleware middleware----------------------------------------------------------------
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://cdn.jsdelivr.net https://127.0.0.1:3000 ws://127.0.0.1:* wss://natours-7fg5.onrender.com:50394 https://js.stripe.com/v3;");
+  next();
+});
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["self","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
+      connectSrc:["self","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
+      scriptSrc: ["self","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
+      workerSrc: ["self", "blob:"], // Allow blob URLs for workers
+      // Add other directives as needed
+    },
   })
 );
 
-// app.use(
-//   helmet({
-//       contentSecurityPolicy: false,
-//       crossOriginEmbedderPolicy: false,
-//     })
-//   );
 app.set('view engine','pug');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));//serve static file
