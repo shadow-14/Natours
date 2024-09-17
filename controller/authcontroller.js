@@ -102,7 +102,7 @@ if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
 else if(req.cookies.jwt){
    token = req.cookies.jwt;
 }
-// console.log(token);
+
 if(!token){
   return next(new AppError('You are not logged in. Please log in to access this route',401));
 }
@@ -135,7 +135,7 @@ exports.isLoggedIn = (async (req, res, next) => {
   if(req.cookies.jwt){
      token = req.cookies.jwt;
   
-  // console.log(token);
+
 
   
   //2)validate the token //Verification

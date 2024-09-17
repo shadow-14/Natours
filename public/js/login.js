@@ -7,7 +7,7 @@ export const login = async (email, password) => {
     try{
   const result =  await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:3000/api/v1/users/login',
+        url: '/api/v1/users/login',
         data: {email, password},
     })
     if(result.data.status === 'success'){
@@ -16,7 +16,8 @@ export const login = async (email, password) => {
             location.assign('/')
         },1500);
     }
-   console.log(result)}
+//    console.log(result)
+}
    catch(err){
     showAlert("error",err.response.data.message);
    }
@@ -26,7 +27,7 @@ export const logout = async()=>{
     try{
     const result = await axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/api/v1/users/logout',
+        url: '/api/v1/users/logout',
     });
     if(result.data.status ==='success'){
     showAlert("success","Logged out successfully");
@@ -46,7 +47,7 @@ export const signUp = async (name,email, password,passwordConfirm) => {
         try{
       const result =  await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/signup',
+            url: '/api/v1/users/signup',
             data: {name,email, password,passwordConfirm},
         })
         if(result.data.status === 'success'){
@@ -55,7 +56,8 @@ export const signUp = async (name,email, password,passwordConfirm) => {
                 location.assign('/')
             },1500);
         }
-       console.log(result)}
+    //    console.log(result)
+    }
        catch(err){
         showAlert("error",err.response.data.message);
        }

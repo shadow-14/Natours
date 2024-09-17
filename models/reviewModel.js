@@ -47,7 +47,7 @@ reviewSchema.statics.calcAverageRatings=async function(tourId){
     { $group: { _id: '$tour', 
       nRating:{ $sum:1},avgRating: { $avg: '$rating' } } },
   ]);
-  console.log(stats);
+  
   if (stats.length > 0) {
     let Tour = require('./tourModel'); // Import inside function to avoid circular dependency
     await Tour.findByIdAndUpdate(tourId, {
@@ -91,13 +91,13 @@ reviewSchema.pre(/^find/, function(next){
   
 //   })
 reviewSchema.post(/^findOneAnd/, async function () {
-  console.log('Post-hook triggered');
-  if (this.r) {
+ 
+  if (this.r) {s
     await this.r.constructor.calcAverageRatings(this.r.tour);
   }
 });
 reviewSchema.pre(/^findOneAnd/, async function (next) {
-  console.log('Pre-hook triggered');
+  
   this.r = await this.findOne().clone(); // Store the document before the update/delete
   next();
 });

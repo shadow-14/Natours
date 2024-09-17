@@ -21,7 +21,7 @@ async function testEmail() {
         text: 'This is a test email'
     });
 
-    console.log('Message sent: %s', info.messageId);
+    // console.log('Message sent: %s', info.messageId);
 }
 
 testEmail().catch(console.error);

@@ -16,6 +16,7 @@ const rateLimit = require('express-rate-limit')
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
 const helmet = require('helmet');
+const compression = require('compression');
 app.use(helmet()); // SET SECURITY HTTP
 // ----------------------------------------------------------------middleware middleware----------------------------------------------------------------
 app.use(
@@ -66,7 +67,7 @@ app.use(hpp({
   whitelist: ['duration','ratingQuantity','ratingAverage','maxGroupSize','difficulty','price']
 })); //params population
 
-
+app.use(compression());
 app.use((req, res, next) => {
  // console.log('Hello from middleware');
   next();

@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-console */
-/* eslint-disable prettier/prettier */
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const fs = require('fs');
@@ -19,7 +17,7 @@ mongoose
     autoIndex: true,
   })
   .then((con) => {
-    // console.log(con.connections);
+  
     console.log('db connected successfully 😎😎😎😎');
   });
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));

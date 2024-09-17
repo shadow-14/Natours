@@ -16,7 +16,7 @@ const UserPasswordForm = document.querySelector('.form-user-settings')
  const bookBtn = document.getElementById('book-tour');
 // Dom elementsw
 if(mapbox){
-console.log("hello from the client side")
+// console.log("hello from the client side")
 const locations = JSON.parse(document.getElementById('map').dataset.locations);
 
 displayMap(locations);}

@@ -78,7 +78,7 @@ exports.getOne =(Model,popOptions) =>catchAsync(async (req, res, next) => {
 
 
 exports.getALL =(Model) =>catchAsync(async (req, res,next) => {
-  // // console.log(req.requestTime);
+  
   // try {
   // to allow nested get review on tour (hack)
     let filter ={};
