@@ -19,20 +19,14 @@ const helmet = require('helmet');
 const compression = require('compression');
 app.use(helmet()); // SET SECURITY HTTP
 // ----------------------------------------------------------------middleware middleware----------------------------------------------------------------
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://cdn.jsdelivr.net https://127.0.0.1:3000 ws://127.0.0.1:* wss://natours-7fg5.onrender.com:50394 https://js.stripe.com/v3;");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://cdn.jsdelivr.net https://127.0.0.1:3000 ws://127.0.0.1:* wss://natours-7fg5.onrender.com:50394 https://js.stripe.com/v3;");
+//   next();
+// });
 
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
-      connectSrc:["'self'","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
-      scriptSrc: ["'self'","https://api.mapbox.com","https://events.mapbox.com/","https://cdn.jsdelivr.net/","https://127.0.0.1:3000/","ws://127.0.0.1:*","https://cdn.jsdelivr.net",'https://js.stripe.com/v3/'],
-      workerSrc: ["'self'", "blob:"], // Allow blob URLs for workers
-      // Add other directives as needed
-    },
+  helmet({
+    contentSecurityPolicy: false,
   })
 );
 
