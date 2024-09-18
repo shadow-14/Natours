@@ -16,7 +16,7 @@ const session = await stripe.checkout.sessions.create({
      mode:'payment',
     // success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourID}&user=${req.user.id}&price=${tour.price}`,
 
-    success_url: `${req.protocol}://${req.get('host')}/my-tours`,
+    success_url: `${req.protocol}://${req.get('host')}/my-tour`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
      customer_email:req.user.email,
      client_reference_id:req.params.tourID,
@@ -78,7 +78,7 @@ try{
     return res.status(400).send(`Webhook Error: ${err.message}`);
 }
 
-if(event.type === 'checkout.session.complete'){
+if(event.type === 'checkout.session.completed'){
 createBookingCheckout(event.data.object);
 res.status(200).json({recieved:true});
 }
