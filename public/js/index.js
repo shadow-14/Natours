@@ -93,4 +93,4 @@ if(bookBtn){
 
 
 const alertMessage = document.querySelector('body').dataset.alert;
-if(alertMessage!=undefined)showAlert('success',alertMessage,20);
+if(alertMessage!='undefined')showAlert('success',alertMessage,20);
