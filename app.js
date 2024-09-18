@@ -12,7 +12,6 @@ const globalerrorHandler = require('./controller/errorController');
 const viewRouter = require('./routes/viewRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
-const bookingcontroller = require('./controller/bookingController');
 const rateLimit = require('express-rate-limit')
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
@@ -60,9 +59,6 @@ const limiter = rateLimit({
   //  standardHeaders: 'draft-7',
   message: 'Too many requests from this IP, please try again in an hour.'
 });
-app.use('webhook-checkout',express.raw({
-  type:'application/json'
-}),bookingcontroller.webhookCheckout);
 
 app.use(express.json({limit : '10kb'})); //middleware for express
 
