@@ -16,13 +16,13 @@ const session = await stripe.checkout.sessions.create({
      mode:'payment',
     // success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourID}&user=${req.user.id}&price=${tour.price}`,
 
-    success_url: `${req.protocol}://${req.get('host')}/my-tour`,
+    success_url: `${req.protocol}://${req.get('host')}/my-tour?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
      customer_email:req.user.email,
      client_reference_id:req.params.tourID,
      line_items: [{
         
-        images: [`${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`],
+        // images: [`${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`],
         price_data:{unit_amount: tour.price * 100, // amount in cents
         currency: 'usd',
     product_data:{name: `${tour.name} Tour`,
