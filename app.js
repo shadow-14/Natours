@@ -17,6 +17,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
 const helmet = require('helmet');
 const compression = require('compression');
+const cors = require('cors')
 app.use(helmet()); // SET SECURITY HTTP
 app.use(
   helmet({
@@ -41,7 +42,8 @@ app.use(
     },
   })
 );
-
+app.use(cors());
+app.options('*',cors());
 app.set('view engine','pug');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));//serve static file
