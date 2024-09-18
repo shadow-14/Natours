@@ -47,9 +47,7 @@ res.status(200).json({
 const createBookingCheckout = async session=>{
 
     const tour = await Tour.findById(session.client_reference_id)
-    if(!tour) return next(new AppError('No tour found',404));
-    const price = (session.line_items[0].price_data.unit_amount)/100;
-    if(price < 1) return next(new AppError('Price must be greater than 0',400));
+    const price = (session.amount_total)/100;
     const user = (await User.findOne({
         email:session.customer_email
     })).id
