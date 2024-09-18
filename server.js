@@ -46,4 +46,10 @@ app.listen(port, () => {
 });
 
 
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received.");
+  server.close(() => {
+    console.log("Server closed due to SIGTERM signal.");
+  });
+})
 //test
