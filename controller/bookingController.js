@@ -22,8 +22,7 @@ const session = await stripe.checkout.sessions.create({
      client_reference_id:req.params.tourID,
      line_items: [{
         
-        // Uncomment and ensure the URL is correct if you decide to include an image
-        //  images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
+        images: [`${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`],
         price_data:{unit_amount: tour.price * 100, // amount in cents
         currency: 'usd',
     product_data:{name: `${tour.name} Tour`,
