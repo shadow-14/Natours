@@ -47,7 +47,7 @@ res.status(200).json({
 
 exports.createBookingCheckout = catchAsync(async(req,res,next)=>{
     const{tour,user,price}=req.query;
-    price = parseInt(price,10);
+    // price = parseInt(price,10);
     if(!tour && !user && !price) return next();
 
 await Booking.create({tour,user,price});

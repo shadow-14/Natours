@@ -7,7 +7,7 @@ const router = express.Router();
 // router.use(authController.isLoggedIn)
 // router.get('/',viewController.base)
 
-  router.get('/',authController.isLoggedIn,bookingController.createBookingCheckout,viewController.getOverview)
+  router.get('/',bookingController.createBookingCheckout,authController.isLoggedIn,viewController.getOverview)
   
   router.get('/tour/:slug',authController.isLoggedIn,viewController.getTour)
 
